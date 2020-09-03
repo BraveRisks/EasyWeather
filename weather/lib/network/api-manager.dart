@@ -36,7 +36,8 @@ enum ApiError {
 }
 
 enum ApiPath {
-  weather
+  weather,
+  aqi,
 }
 
 class ApiManager {
@@ -53,11 +54,11 @@ class ApiManager {
   // 外部調用
   static ApiManager get share => _instance;
 
-  /// 連接時間設定，value = 3s
-  final int connectTimeout = 3000;
+  /// 連接時間設定，value = 30s
+  final int connectTimeout = 30000;
 
-  /// 接收時間設定，value = 3s
-  final int receiveTimeout = 3000;
+  /// 接收時間設定，value = 30s
+  final int receiveTimeout = 30000;
 
   /// 管理請求資源
   Map<String, CancelToken> _tasks = Map();
@@ -83,12 +84,6 @@ class ApiManager {
     options.receiveTimeout = receiveTimeout;
 
     final apiPath = _convertApiPath(path);
-
-    // 添加共通參數
-    parameters["exclude"] = "daily";
-    parameters["units"] = "metric";
-    parameters["lang"] = "zh_tw";
-    parameters["appid"] = "32be38731000e42f21c4a11e721f168f";
 
     try {
       Response response = await dio.get(
@@ -137,14 +132,14 @@ class ApiManager {
       switch (e.type) {
         case DioErrorType.CONNECT_TIMEOUT:
         case DioErrorType.RECEIVE_TIMEOUT:
-          _handleFailed(ApiError.timeOut, e.toString(), onFailed: onFailed);
+          _handleFailed(ApiError.timeOut, "連線逾時，請稍後再試！", onFailed: onFailed);
           break;
         default:
-          _handleFailed(ApiError.dioError, e.toString(), onFailed: onFailed);
+          _handleFailed(ApiError.dioError, "發生未知錯誤，請稍後再試！", onFailed: onFailed);
           break;
       }
     } catch (e) {
-      _handleFailed(ApiError.other, e.toString(), onFailed: onFailed);
+      _handleFailed(ApiError.other, "發生未知錯誤，請稍後再試！", onFailed: onFailed);
     } finally {
       if (onDone != null) { onDone(); }
 
@@ -158,6 +153,8 @@ class ApiManager {
     switch (path) {
       case ApiPath.weather:
         return "https://api.openweathermap.org/data/2.5/onecall";
+      case ApiPath.aqi:
+        return "https://data.epa.gov.tw/api/v1/aqx_p_432";
       default:
         return "";
     }

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="android" name="Android">
+      <configuration>
+        <option name="GEN_FOLDER_RELATIVE_PATH_APT" value="/../../EasyWeather/gen" />
+        <option name="GEN_FOLDER_RELATIVE_PATH_AIDL" value="/../../EasyWeather/gen" />
+        <option name="MANIFEST_FILE_RELATIVE_PATH" value="/../../EasyWeather/AndroidManifest.xml" />
+        <option name="RES_FOLDER_RELATIVE_PATH" value="/../../EasyWeather/res" />
+        <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/../../EasyWeather/assets" />
+        <option name="LIBS_FOLDER_RELATIVE_PATH" value="/../../EasyWeather/libs" />
+        <option name="PROGUARD_LOGS_FOLDER_RELATIVE_PATH" value="/../../EasyWeather/proguard_logs" />
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/gen" isTestSource="false" generated="true" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/build" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/flutter_plugin_android_lifecycle/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/flutter_plugin_android_lifecycle/build" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/flutter_plugin_android_lifecycle/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/flutter_plugin_android_lifecycle/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/geolocator/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/geolocator/build" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/geolocator/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/geolocator/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/google_api_availability/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/google_api_availability/build" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/google_api_availability/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/google_api_availability/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/google_maps_flutter/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/google_maps_flutter/build" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/google_maps_flutter/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/google_maps_flutter/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/location_permissions/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/location_permissions/build" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/location_permissions/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/location_permissions/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/package_info/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/package_info/build" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/package_info/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/package_info/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/url_launcher/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/url_launcher/build" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/url_launcher/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/url_launcher/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/url_launcher_linux/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/url_launcher_linux/build" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/url_launcher_linux/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/url_launcher_linux/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/url_launcher_macos/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/url_launcher_macos/build" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/url_launcher_macos/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/url_launcher_macos/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/url_launcher_web/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/weather/ios/.symlinks/plugins/url_launcher_web/build" />
+    </content>
+    <orderEntry type="jdk" jdkName="Android API 27 Platform" jdkType="Android SDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

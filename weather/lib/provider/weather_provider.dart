@@ -1,79 +1,66 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:weather/model/weather.dart';
-import 'package:weather/network/api-manager.dart';
 
 class WeatherProvider with ChangeNotifier {
 
-  ApiManager _apiManager;
-
+  /// 天氣資料
   Weather weather;
-  String district;
+
+  /// 現在位置的MarkerId
+  String _current = "CurrentPosition";
+
+  Set<Marker> _markers;
+
+  /// 現在位置及空氣品質指標集合
+  Set<Marker> get markers => _markers;
+
+  /// 是否第一次載入天氣資料，default = true
+  bool isFirstLoading = true;
+  
+  /// 是否載入天氣資料中，default = true
+  bool get isWeatherLoading => _isWeatherLoading;
+
+  bool _isWeatherLoading = true;
+
+  /// 是否載入空氣品質資料中，default = false
+  bool get isAQILoading => _isAQILoading;
+
+  bool _isAQILoading = false;
 
   WeatherProvider() {
-    _apiManager = ApiManager.share;
+    _markers = Set();
   }
 
-  void fetchWeatherBy(LatLng latLng, Geolocator geolocator) async {
-    if (weather != null) {
-      weather = null;
-      district = null;
-      notifyListeners();
+  set isWeatherLoading(bool isLoading) {
+    this._isWeatherLoading = isLoading;
+    notifyListeners();
+  }
+
+  set isAQILoading(bool isLoading) {
+    this._isAQILoading = isLoading;
+    notifyListeners();
+  }
+
+  void addCurrentMarkerAndSetWeather(Marker marker, Weather weather) {
+    if (isFirstLoading) { isFirstLoading = false; }
+
+    if (_markers.isNotEmpty) {
+      _markers.removeWhere((e) => e.markerId.value == _current);
     }
+    _markers.add(marker);
 
-    // 取得經緯度對應的行政區
-    await geolocator.placemarkFromCoordinates(
-        latLng.latitude,
-        latLng.longitude,
-        localeIdentifier: "zh_TW"
-    ).then((List<Placemark> places) {
-      if (places.isNotEmpty) {
-        /*
-        Result =
-          {
-            name: 臺北 101,
-            isoCountryCode: TW,
-            country: 台灣,
-            postalCode: 11049,
-            administrativeArea: ,
-            subAdministrativeArea: 台北市,
-            locality: 信義區,
-            subLocality: ,
-            thoroughfare: 信義路五段,
-            subThoroughfare: 7,
-            position: {
-              longitude: 121.56508600000001,
-              latitude: 25.033678,
-              timestamp: 1595993101364,
-              mocked: false,
-              accuracy: 100.0,
-              altitude: 0.0,
-              heading: -1.0,
-              speed: -1.0,
-              speedAccuracy: 0.0
-            }
-          }
-        */
+    this.weather = weather;
 
-        district = places[0].locality;
-      }
-    }).catchError((e) {
-      print("FromCoordinates error = $e");
-    });
+    notifyListeners();
+  }
 
-    _apiManager.request(
-        ApiPath.weather,
-        {
-          "lat": "${latLng.latitude}",
-          "lon" : "${latLng.longitude}"
-        },
-        debugPrintRequest: true,
-        debugPrintResponse: false,
-        onSuccess: (result) {
-          weather = Weather.fromJSON(result);
-          notifyListeners();
-        }
-    );
+  void addAQIMarkers(Set<Marker> markers) {
+    if (_markers.isNotEmpty) {
+      _markers.removeWhere((e) => e.markerId.value != _current);
+    }
+    _markers.addAll(markers);
+
+    notifyListeners();
   }
 }

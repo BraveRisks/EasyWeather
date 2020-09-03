@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weather/provider/dark_mode_provider.dart';
+import 'package:weather/provider/control_provider.dart';
 import 'package:weather/provider/weather_provider.dart';
 import 'package:weather/routes/map_page.dart';
 import 'package:weather/routes/setting_page.dart';
@@ -26,7 +26,7 @@ class _MainContainerPageState extends State<MainContainerPage> {
 
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => DarkMode(),),
+        ChangeNotifierProvider(create: (context) => CtrlProvider(),),
         ChangeNotifierProvider(create: (context) => WeatherProvider(),),
       ],
       child: Scaffold(

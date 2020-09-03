@@ -49,6 +49,10 @@ dependencies:
   # https://pub.dev/packages/provider/install
   provider: ^4.3.1
 
+  # https://pub.dev/packages/shared_preferences/install
+  shared_preferences: ^0.5.10
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -66,8 +70,8 @@ flutter:
 
   assets:
     - images/
-    - images/2.0x/
-    - images/3.0x/
+    - images/tabbar/
+    - images/aqi/
     - resource/
 
   # An image asset can refer to one or more resolution-specific "variants", see

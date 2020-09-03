@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:weather/model/setting.dart';
-import 'package:weather/provider/dark_mode_provider.dart';
+import 'package:weather/provider/control_provider.dart';
 import 'package:weather/tool/palette.dart';
 import 'package:weather/widgets/fix_image.dart';
 
@@ -18,6 +18,7 @@ class _SettingPageState extends State<SettingPage> {
 
   final List<SettingType> types = [
     SettingType.mapStyle,
+    SettingType.aqi,
     SettingType.api,
     SettingType.version
   ];
@@ -33,9 +34,6 @@ class _SettingPageState extends State<SettingPage> {
 
   @override
   Widget build(BuildContext context) {
-    var darkMode = Provider.of<DarkMode>(context);
-    items[0].darkMode(darkMode.isDark);
-
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -48,9 +46,17 @@ class _SettingPageState extends State<SettingPage> {
       body: ListView.builder(
         itemCount: items.length,
         itemBuilder: (BuildContext context, int position) {
-          return _settingItem(context, position, onTap: () {
-            _click(context, items[position].type);
-          });
+          return Consumer<CtrlProvider>(
+            builder: (context, provider, child) {
+              if (items[position].type == SettingType.mapStyle) {
+                items[0].darkMode(provider.isDarkMap);
+              }
+
+              return _settingItem(context, position, onTap: () {
+                _click(context, items[position].type);
+              });
+            },
+          );
         },
       ),
     );
@@ -62,6 +68,7 @@ class _SettingPageState extends State<SettingPage> {
       child: Column(
         children: <Widget>[
           Container(
+            width: MediaQuery.of(context).size.width - 50.0,
             height: 60.0,
             child: Row(
               children: <Widget>[
@@ -74,9 +81,9 @@ class _SettingPageState extends State<SettingPage> {
                   child: Text(
                     items[position].title,
                     style: TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.w500,
-                        color: Palette.on699ad0
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w500,
+                      color: Palette.on699ad0
                     ),
                     textScaleFactor: 1.0,
                   ),
@@ -98,26 +105,33 @@ class _SettingPageState extends State<SettingPage> {
     );
   }
 
-  void _click(BuildContext context, SettingType type) async {
+  void _click(BuildContext context, SettingType type) {
     switch (type) {
+      case SettingType.aqi:
       case SettingType.api:
-        final url = "https://openweathermap.org/api";
-        if (await canLaunch(url)) {
-          await launch(
-            url,
-            forceSafariVC: true,
-            forceWebView: true
-          );
-        } else {
-          throw "$url can't launch.";
-        }
+        String url = type == SettingType.aqi ? "https://data.epa.gov.tw/" : "http://openweathermap.org/api";
+        _openUrl(url: url);
         break;
       case SettingType.version:
       case SettingType.none:
         break;
       case SettingType.mapStyle:
-        Provider.of<DarkMode>(context, listen: false).change();
+        Provider.of<CtrlProvider>(context, listen: false).change(ChangeType.darkMap);
         break;
+    }
+  }
+
+  void _openUrl({String url}) async {
+    if (url == null) { return; }
+
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: true,
+        forceWebView: true
+      );
+    } else {
+      throw "$url can't launch.";
     }
   }
 }

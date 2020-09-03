@@ -6,6 +6,8 @@ enum SettingType {
 
   api,
 
+  aqi,
+
   version,
 
   mapStyle,
@@ -34,6 +36,8 @@ class Setting {
   /// 將SettingType轉換為對應標題
   String _convertToTitle(SettingType type) {
     switch (type) {
+      case SettingType.aqi:
+        return "環境保護署";
       case SettingType.api:
         return "OpenWeather";
       default:
@@ -43,6 +47,7 @@ class Setting {
 
   Widget _convertToImage(SettingType type) {
     switch (type) {
+      case SettingType.aqi:
       case SettingType.api:
         return Images.icApiBlue;
       case SettingType.version:
