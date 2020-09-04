@@ -335,7 +335,7 @@ class _MapPageState extends State<MapPage> with TickerProviderStateMixin {
           "exclude": "daily",
           "units": "metric",
           "lang": "zh_tw",
-          "appid": "32be38731000e42f21c4a11e721f168f",
+          "appid": "your appid from openweather",
           "lat": "${position.latitude}",
           "lon" : "${position.longitude}"
         },
@@ -388,7 +388,7 @@ class _MapPageState extends State<MapPage> with TickerProviderStateMixin {
         {
           "limit": "200",
           "format": "json",
-          "api_key": "305ec26d-bdc7-4ee4-9689-fbbb8f778406"
+          "api_key": "9be7b239-557b-4c10-9775-78cadfc555e9"
         },
         debugPrintResponse: false,
         onSuccess: (result) {

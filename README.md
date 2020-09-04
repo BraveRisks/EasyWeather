@@ -2,7 +2,7 @@
 
 使用[Flutter](https://flutter.dev/)框架，來攥寫跨平台的App。
 
-## ☀️🌤⛅️🌥☁️🌦🌧⛈🌩🌨❄️💨
+## ☀️ 🌤 ⛅️ 🌥 ☁️ 🌦 🌧 ⛈ 🌩 🌨 ❄️ 💨
 
 ## 功能
 - 拖曳地圖圖標，可以查詢當地的天氣狀況
@@ -39,8 +39,8 @@ lib
  |--main.dart
 ```
 ## API Provider
-- ### [行政院環境保護署](https://data.epa.gov.tw/dataset/aqx_p_432)
-- ### [OpenWeather](https://openweathermap.org/api)
+- #### [行政院環境保護署](https://data.epa.gov.tw/dataset/aqx_p_432)
+- #### [OpenWeather](https://openweathermap.org/api)
 
 ## License
 EasyWeather is available under the MIT license. See the [LICENSE](LICENSE) file for more info.
