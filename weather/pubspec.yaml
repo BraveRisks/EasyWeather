@@ -71,7 +71,12 @@ flutter:
   assets:
     - images/
     - images/tabbar/
-    - images/aqi/
+    - images/ic-pin.png
+    - images/ic-north.png
+    - images/ic-central.png
+    - images/ic-south.png
+    - images/ic-east.png
+    - images/ic-outerisland.png
     - resource/
 
   # An image asset can refer to one or more resolution-specific "variants", see

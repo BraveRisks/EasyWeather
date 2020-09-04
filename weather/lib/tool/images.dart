@@ -15,38 +15,43 @@ class Images {
   /// Resource: ic-settings-gray
   static Widget icSettingsGray = Image.asset(icSettingsGrayStr);
 
-  // MARK: - AQI
+  // MARK: - Other
   /// Resource: ic-north
-  static String icNorthStr = "images/aqi/ic-north.png";
+  static String icNorthStr = "images/ic-north.png";
 
   /// Resource: ic-north
   static Widget icNorth = Image.asset(icNorthStr);
 
   /// Resource: ic-central
-  static String icCentralStr = "images/aqi/ic-central.png";
+  static String icCentralStr = "images/ic-central.png";
 
   /// Resource: ic-central
   static Widget icCentral = Image.asset(icCentralStr);
 
   /// Resource: ic-south
-  static String icSouthStr = "images/aqi/ic-south.png";
+  static String icSouthStr = "images/ic-south.png";
 
   /// Resource: ic-south
   static Widget icSouth = Image.asset(icSouthStr);
 
   /// Resource: ic-east
-  static String icEastStr = "images/aqi/ic-east.png";
+  static String icEastStr = "images/ic-east.png";
 
   /// Resource: ic-east
   static Widget icEast = Image.asset(icEastStr);
 
   /// Resource: ic-outerisland
-  static String icOuterIslandStr = "images/aqi/ic-outerisland.png";
+  static String icOuterIslandStr = "images/ic-outerisland.png";
 
   /// Resource: ic-outerisland
   static Widget icOuterIsland = Image.asset(icOuterIslandStr);
 
-  // MARK: - Other
+  /// Resource: ic-pin
+  static String icPinStr = "images/ic-pin.png";
+
+  /// Resource: ic-pin
+  static Widget icPin = Image.asset(icPinStr);
+
   /// Resource: ic-day
   static String icDayStr = "images/ic-day.png";
 
@@ -58,12 +63,6 @@ class Images {
 
   /// Resource: ic-night
   static Widget icNight = Image.asset(icNightStr);
-
-  /// Resource: ic-pin
-  static String icPinStr = "images/ic-pin.png";
-
-  /// Resource: ic-pin
-  static Widget icPin = Image.asset(icPinStr);
 
   /// Resource: ic-api-blue
   static String icApiBlueStr = "images/ic-api-blue.png";

@@ -323,7 +323,9 @@ class _MapPageState extends State<MapPage> with TickerProviderStateMixin {
     });
 
     BitmapDescriptor pinIcon = await BitmapDescriptor.fromAssetImage(
-        ImageConfiguration(),
+        ImageConfiguration(
+            devicePixelRatio: MediaQuery.of(context).devicePixelRatio
+        ),
         Images.icPinStr
     );
 
@@ -363,30 +365,21 @@ class _MapPageState extends State<MapPage> with TickerProviderStateMixin {
 
   /// 取得目前的空氣品質指標
   void _fetchAQI() async {
-    BitmapDescriptor northIcon = await BitmapDescriptor.fromAssetImage(
-        ImageConfiguration(),
-        Images.icNorthStr
-    );
+    final ratio = MediaQuery.of(context).devicePixelRatio;
 
-    BitmapDescriptor centralIcon = await BitmapDescriptor.fromAssetImage(
-        ImageConfiguration(),
-        Images.icCentralStr
-    );
+    List<String> iconNames = [
+      Images.icNorthStr, Images.icCentralStr, Images.icSouthStr,
+      Images.icEastStr, Images.icOuterIslandStr
+    ];
 
-    BitmapDescriptor southIcon = await BitmapDescriptor.fromAssetImage(
-        ImageConfiguration(),
-        Images.icSouthStr
-    );
+    List<BitmapDescriptor> icons = List();
 
-    BitmapDescriptor eastIcon = await BitmapDescriptor.fromAssetImage(
-        ImageConfiguration(),
-        Images.icEastStr
-    );
-
-    BitmapDescriptor outerIslandIcon = await BitmapDescriptor.fromAssetImage(
-        ImageConfiguration(),
-        Images.icOuterIslandStr
-    );
+    for (int i = 0; i < iconNames.length; i++) {
+      icons.add(await BitmapDescriptor.fromAssetImage(
+          ImageConfiguration(devicePixelRatio: ratio),
+          iconNames[i]
+      ));
+    }
 
     Provider.of<WeatherProvider>(context, listen: false).isAQILoading = true;
 
@@ -414,19 +407,19 @@ class _MapPageState extends State<MapPage> with TickerProviderStateMixin {
 
             switch (aqi.region) {
               case Region.north:
-                icon = northIcon;
+                icon = icons[0];
                 break;
               case Region.central:
-                icon = centralIcon;
+                icon = icons[1];
                 break;
               case Region.south:
-                icon = southIcon;
+                icon = icons[2];
                 break;
               case Region.east:
-                icon = eastIcon;
+                icon = icons[3];
                 break;
               case Region.outerIsland:
-                icon = outerIslandIcon;
+                icon = icons[4];
                 break;
             }
 
@@ -471,7 +464,7 @@ class _MapPageState extends State<MapPage> with TickerProviderStateMixin {
           ),
           child: Container(
             width: 240.0,
-            height: 366.0,
+            height: 410.0,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -515,16 +508,16 @@ class _MapPageState extends State<MapPage> with TickerProviderStateMixin {
   /// Dialog AQI數值
   Widget _dialogContent(AQI aqi) {
     return Padding(
-      padding: EdgeInsets.only(top: 32.0, bottom: 16.0),
+      padding: EdgeInsets.only(top: 22.0, bottom: 16.0),
       child: Container(
-        width: 120.0,
-        height: 120.0,
+        width: 130.0,
+        height: 130.0,
         decoration: BoxDecoration(
           border: Border.all(
             width: 4.0,
             color: aqi.aqiColor,
           ),
-          borderRadius: BorderRadius.circular(60.0),
+          borderRadius: BorderRadius.circular(65.0),
         ),
         child: Column(
           children: [
@@ -533,7 +526,7 @@ class _MapPageState extends State<MapPage> with TickerProviderStateMixin {
               child: Text(
                 "空氣品質指標",
                 style: TextStyle(
-                  fontSize: 10.0,
+                  fontSize: 12.0,
                   fontWeight: FontWeight.w400,
                   color: Palette.on979797,
                   height: 1.0,
@@ -541,7 +534,7 @@ class _MapPageState extends State<MapPage> with TickerProviderStateMixin {
               ),
             ),// Padding
             Padding(
-              padding: EdgeInsets.only(bottom: 12.0),
+              padding: EdgeInsets.only(bottom: 8.0),
               child: Text(
                 "${aqi.aqi}",
                 style: TextStyle(
@@ -552,13 +545,18 @@ class _MapPageState extends State<MapPage> with TickerProviderStateMixin {
                 ),
               ),
             ),// Padding
-            Text(
-              "${aqi.status}",
-              style: TextStyle(
-                fontSize: 10.0,
-                fontWeight: FontWeight.w400,
-                color: Palette.on979797,
-                height: 1.0,
+            Container(
+              width: 80.0,
+              child: Text(
+                "${aqi.status}",
+                style: TextStyle(
+                  fontSize: 12.0,
+                  fontWeight: FontWeight.w400,
+                  color: Palette.on979797,
+                  height: 1.0,
+                ),
+                maxLines: 2,
+                textAlign: TextAlign.center,
               ),
             ),// Text
           ],
@@ -576,12 +574,12 @@ class _MapPageState extends State<MapPage> with TickerProviderStateMixin {
     List<String> units = ["(ug/m3)", "(ug/m3)", "(ppb)", "(ppm)", "(ppm)", "(ppm)"];
 
     return Padding(
-      padding: EdgeInsets.only(left: 30.0, bottom: 20.0, right: 30.0),
+      padding: EdgeInsets.only(left: 30.0, bottom: 16.0, right: 30.0),
       child: Container(
-        height: 96.0,
+        height: 144.0,
         child: ListView.builder(
           shrinkWrap: true,
-          physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+          physics: NeverScrollableScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
           padding: EdgeInsets.zero,
           itemCount: 6,
           itemBuilder: (BuildContext context, int index) {
